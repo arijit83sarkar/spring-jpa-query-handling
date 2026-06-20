@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +35,7 @@ public class CommentController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Add a comment to a post")
-    public Comment addComment(@PathVariable Long postId, @RequestBody Comment comment) {
+    public Comment addComment(@PathVariable Long postId, @Valid @RequestBody Comment comment) {
         log.info("POST /posts/{}/comments - adding comment", postId);
         return commentService.addComment(postId, comment);
     }

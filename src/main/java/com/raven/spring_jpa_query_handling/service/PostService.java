@@ -1,6 +1,7 @@
 package com.raven.spring_jpa_query_handling.service;
 
 import com.raven.spring_jpa_query_handling.enitty.Post;
+import com.raven.spring_jpa_query_handling.exception.ResourceNotFoundException;
 import com.raven.spring_jpa_query_handling.repository.PostRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +39,7 @@ public class PostService {
         return postRepository.findById(id)
                 .orElseThrow(() -> {
                     log.warn("Post not found with id: {}", id);
-                    return new RuntimeException("Post not found with id: " + id);
+                    return new ResourceNotFoundException("Post not found with id: " + id);
                 });
     }
 

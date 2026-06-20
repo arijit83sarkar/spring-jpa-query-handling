@@ -2,6 +2,7 @@ package com.raven.spring_jpa_query_handling.enitty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "comments")
@@ -10,6 +11,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Body must not be blank")
     private String body;
 
     @JsonIgnore
