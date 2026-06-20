@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/posts/{postId}/comments")
+@RequestMapping("/api/v1/posts/{postId}/comments")
 @Tag(name = "Comment", description = "APIs for managing comments on a post")
 public class CommentController {
 
