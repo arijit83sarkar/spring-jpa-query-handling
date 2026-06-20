@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CommentService {
 
@@ -18,6 +20,14 @@ public class CommentService {
     public CommentService(CommentRepository commentRepository, PostService postService) {
         this.commentRepository = commentRepository;
         this.postService = postService;
+    }
+
+    public List<Comment> findByPostId(Long postId) {
+        log.info("Fetching comments for post id: {}", postId);
+        postService.findById(postId);
+        List<Comment> comments = commentRepository.findByPostId(postId);
+        log.debug("Found {} comments for post id: {}", comments.size(), postId);
+        return comments;
     }
 
     public Comment addComment(Long postId, Comment comment) {
