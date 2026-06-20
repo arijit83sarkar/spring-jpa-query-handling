@@ -41,4 +41,11 @@ public class PostService {
                     return new RuntimeException("Post not found with id: " + id);
                 });
     }
+
+    public void deleteById(Long id) {
+        log.info("Deleting post with id: {}", id);
+        findById(id);
+        postRepository.deleteById(id);
+        log.debug("Post deleted with id: {}", id);
+    }
 }

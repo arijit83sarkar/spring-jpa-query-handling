@@ -45,4 +45,12 @@ public class PostController {
         log.info("POST /posts - creating post: {}", post.getTitle());
         return postService.save(post);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(summary = "Delete a post and its comments by ID")
+    public void deletePost(@PathVariable Long id) {
+        log.info("DELETE /posts/{} - deleting post", id);
+        postService.deleteById(id);
+    }
 }
