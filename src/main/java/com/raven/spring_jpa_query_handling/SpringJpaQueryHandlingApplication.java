@@ -16,6 +16,7 @@ public class SpringJpaQueryHandlingApplication {
 		log.info("Application started successfully on port 8010");
 		log.info("Swagger UI available at: http://localhost:8010/swagger-ui.html");
 		log.info("API base URL: http://localhost:8010/api/v1");
+		log.info("Actuator available at: http://localhost:8010/actuator");
 	}
 
 }

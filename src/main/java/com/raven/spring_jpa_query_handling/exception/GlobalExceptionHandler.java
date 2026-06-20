@@ -32,4 +32,11 @@ public class GlobalExceptionHandler {
         log.warn("Validation failed: {}", message);
         return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), message, LocalDateTime.now());
     }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorResponse handleGenericException(Exception ex) {
+        log.error("Unexpected error occurred: {}", ex.getMessage(), ex);
+        return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "An unexpected error occurred", LocalDateTime.now());
+    }
 }
