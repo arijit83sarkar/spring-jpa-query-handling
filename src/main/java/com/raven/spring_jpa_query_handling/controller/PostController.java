@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/posts")
 @Tag(name = "Post", description = "APIs for managing posts")
@@ -20,6 +22,20 @@ public class PostController {
 
     public PostController(PostService postService) {
         this.postService = postService;
+    }
+
+    @GetMapping
+    @Operation(summary = "Get all posts with their comments")
+    public List<Post> getAllPosts() {
+        log.info("GET /posts - fetching all posts");
+        return postService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Get a single post by ID with its comments")
+    public Post getPostById(@PathVariable Long id) {
+        log.info("GET /posts/{} - fetching post", id);
+        return postService.findById(id);
     }
 
     @PostMapping

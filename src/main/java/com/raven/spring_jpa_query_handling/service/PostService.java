@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PostService {
 
@@ -15,6 +17,13 @@ public class PostService {
 
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
+    }
+
+    public List<Post> findAll() {
+        log.info("Fetching all posts");
+        List<Post> posts = postRepository.findAll();
+        log.debug("Found {} posts", posts.size());
+        return posts;
     }
 
     public Post save(Post post) {
